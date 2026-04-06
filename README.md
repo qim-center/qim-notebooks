@@ -32,3 +32,36 @@ Filtering, segmentation, measurement, and morphological analysis. Shows how to c
 ### 🧪 Generation
 
 Creating synthetic volumetric data for testing and development.
+
+## Contribution
+
+Each Jupyter notebook must include a specific first cell format for proper display in the QIM platform.
+
+### First Cell Pattern
+
+The **first cell** of every notebook must be a **markdown cell** with the following structure:
+
+```markdown
+# Notebook Title
+
+Brief description of what the notebook does.
+```
+
+### Requirements
+
+- **Cell type**: Must be a markdown cell (not code)
+- **Line 1**: Title starting with `#` (single hash for H1 heading)
+  - The `#` symbol will be automatically stripped when displayed
+  - Becomes the notebook's display title in the gallery
+- **Line 2**: Description text
+  - Used as preview text in the notebook gallery
+  - Keep under 300 characters for best display (automatically truncated if longer)
+  - Should concisely explain the notebook's purpose
+
+### Example
+
+```markdown
+# Image Segmentation with Machine Learning
+
+This notebook demonstrates how to use deep learning for semantic segmentation of microscopy images using PyTorch and the U-Net architecture.
+```
