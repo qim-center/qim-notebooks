@@ -40,9 +40,10 @@ This collection is developed and maintained by the **QIM Center** community. We 
 If you would like to contribute a new workflow notebook or improve an existing example, please submit a pull request. 
 
 ### Notebook Formatting Guidelines
-To maintain consistency across the repository collection, **notebooks should adhere to the following format for their very first markdown cell**. Notebooks that do not include this exact structure will not be accepted:
+To maintain consistency across the repository collection, **notebooks should adhere to the following format**. This is to ensure that all notebooks can be visualised consistently on our platform. Notebooks that do not include this exact structure will not be accepted:
 
-1. **# H1 Title:** The very first line of the first cell **must** start with a single `#` to define an H1 title (e.g., `# Large data generation` or `# Tubular structure`).
-2. **Short Description:** Immediately following the title in the same cell, you **must** include a short, one-sentence description explaining exactly what the notebook does. This description is required to fit into our documentation layout.
+1. **First cell as markdown:** The very first cell of the notebook should be a markdown cell.
+2. **# H1 Title:** The very first line of the first cell **must** start with a single `#` to define an H1 title (e.g., `# Large data generation` or `# Tubular structure`).
+3. **Short Description:** Immediately following the title in the same cell, you **must** include a short, one-sentence description explaining exactly what the notebook does. This description is required to fit into our documentation layout.
 
 If you have questions or want to discuss your notebook ideas before submitting a pull request, join the conversation on our community forum: https://forum.qim.dk/.
