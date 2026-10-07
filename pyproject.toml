@@ -1,0 +1,38 @@
+[project]
+name = "qim-notebooks"
+version = "0.1.0"
+description = "Example Notebooks for the qim3d library"
+authors = [
+    { name = "QIM Development Team", email = "info@qim.dk" },
+]
+maintainers = [
+    { name = "QIM Development Team", email = "info@qim.dk" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "qim3d[all]",
+    "cil",
+    "distributed",
+    "noise",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel<7", 
+    "pytest>=9.1.1",
+    "testbook>=0.4.2",
+]
+
+[tool.uv.sources]
+qim3d = { git = "https://github.com/qim-center/qim3d.git", rev = "main" }
+cil = { git = "https://github.com/TomographicImaging/CIL.git" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-m 'not execution'"
+markers = [
+    "format: Quick markdown format checks",
+    "compile: Python code cell syntax and AST compilation checks",
+    "execution: End-to-end notebook execution checks",
+]

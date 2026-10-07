@@ -1,0 +1,64 @@
+name: CI Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  format-check:
+    name: Notebook Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: uv sync --only-group dev
+
+      - name: Run Format and Compilation Tests
+        run: uv run pytest -m "format or compile"
+
+  execution-check:
+    name: Run Notebooks (${{ matrix.category }})
+    needs: format-check
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        category: [data, generation, processing, reconstruction, visualization]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system headless display dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1-mesa-dri libgl1 libosmesa6 libglu1-mesa
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run Category Notebooks
+        env:
+          PYVISTA_OFF_SCREEN: "true"
+          QT_QPA_PLATFORM: "offscreen"
+          MPLBACKEND: "Agg"
+        run: xvfb-run -a uv run pytest -m execution -k ${{ matrix.category }}
+
