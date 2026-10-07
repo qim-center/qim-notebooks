@@ -42,7 +42,7 @@ jobs:
       - name: Install system headless display dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgl1-mesa-dri libgl1 libosmesa6
+          sudo apt-get install -y xvfb libgl1-mesa-dri libgl1 libosmesa6 libglu1-mesa
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
