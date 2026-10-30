@@ -13,7 +13,6 @@ dependencies = [
     "qim3d[all]",
     "cil",
     "distributed",
-    "noise",
 ]
 
 [dependency-groups]
@@ -24,7 +23,6 @@ dev = [
 ]
 
 [tool.uv.sources]
-qim3d = { git = "https://github.com/qim-center/qim3d.git", rev = "main" }
 cil = { git = "https://github.com/TomographicImaging/CIL.git" }
 
 [tool.pytest.ini_options]
