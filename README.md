@@ -46,4 +46,43 @@ To maintain consistency across the repository collection, **notebooks should adh
 2. **# H1 Title:** The very first line of the first cell **must** start with a single `#` to define an H1 title (e.g., `# Large data generation` or `# Tubular structure`).
 3. **Short Description:** Immediately following the title in the same cell, you **must** include a short, one-sentence description explaining exactly what the notebook does. This description is required to fit into our documentation layout.
 
+## Testing
+
+This repository uses `pytest` and [`testbook`](https://testbook.readthedocs.io/) to validate notebook formatting, code syntax, and execution.
+
+### Fast Local Checks (Default)
+
+Running standard `pytest` executes format and AST syntax compilation checks across all notebooks in **< 1 second** without starting Jupyter kernels:
+
+```bash
+uv run pytest
+```
+
+- **Format Checks (`-m format`):** Verifies that the first cell is markdown with a single `#` H1 title followed by a short description.
+- **Compilation Checks (`-m compile`):** Validates Python code cell AST syntax across all notebooks.
+
+### Notebook Execution Tests
+
+To test end-to-end notebook execution:
+
+```bash
+uv run pytest -m execution
+```
+
+- **Headless & Offscreen:** Automatically sets PyVista, VTK, Matplotlib, and Qt to run offscreen without opening GUI windows or disrupting desktop environments.
+- **Heavy Notebook Isolation:** Notebooks requiring high RAM, local datasets, or GPU acceleration are skipped by default.
+
+To include heavy notebooks:
+
+```bash
+uv run pytest -m execution --run-heavy
+```
+
+To run execution tests for a specific category or notebook:
+
+```bash
+uv run pytest -m execution -k visualization
+uv run pytest -m execution -k Simple_visualization
+```
+
 If you have questions or want to discuss your notebook ideas before submitting a pull request, join the conversation on our community forum: https://forum.qim.dk/.
