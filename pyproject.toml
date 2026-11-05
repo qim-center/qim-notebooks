@@ -11,7 +11,6 @@ maintainers = [
 requires-python = ">=3.12"
 dependencies = [
     "qim3d[all]",
-    "cil",
     "distributed",
 ]
 
@@ -21,9 +20,6 @@ dev = [
     "pytest>=9.1.1",
     "testbook>=0.4.2",
 ]
-
-[tool.uv.sources]
-cil = { git = "https://github.com/TomographicImaging/CIL.git" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -23,20 +23,22 @@ HEAVY_NOTEBOOKS = {
 }
 
 
-
-
-
 def get_timeout(nb_path: Path) -> int:
     category = nb_path.parent.name
     return CATEGORY_TIMEOUTS.get(category, 180)
 
+
 @pytest.mark.execution
-@pytest.mark.parametrize("nb_path", NOTEBOOKS, ids=lambda p: f"{p.parent.name}/{p.stem}")
+@pytest.mark.parametrize(
+    "nb_path", NOTEBOOKS, ids=lambda p: f"{p.parent.name}/{p.stem}"
+)
 def test_notebook_runs(nb_path, tmp_work_dir, request):
     rel_path = str(nb_path.relative_to(REPO_ROOT))
     if rel_path in HEAVY_NOTEBOOKS:
         if not request.config.getoption("--run-heavy"):
-            pytest.skip(f"Skipping heavy notebook (use --run-heavy to run): {HEAVY_NOTEBOOKS[rel_path]}")
+            pytest.skip(
+                f"Skipping heavy notebook (use --run-heavy to run): {HEAVY_NOTEBOOKS[rel_path]}"
+            )
 
     abs_nb_path = nb_path.resolve()
 

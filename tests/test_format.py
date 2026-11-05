@@ -4,8 +4,11 @@ from pathlib import Path
 import pytest
 from conftest import NOTEBOOKS
 
+
 @pytest.mark.format
-@pytest.mark.parametrize("nb_path", NOTEBOOKS, ids=lambda p: f"{p.parent.name}/{p.stem}")
+@pytest.mark.parametrize(
+    "nb_path", NOTEBOOKS, ids=lambda p: f"{p.parent.name}/{p.stem}"
+)
 def test_notebook_format(nb_path):
     with open(nb_path, "r", encoding="utf-8") as f:
         data = json.load(f)
