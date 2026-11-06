@@ -10,7 +10,7 @@ maintainers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "qim3d[all]",
+    "qim3d[all]>=1.6",
     "distributed",
 ]
 

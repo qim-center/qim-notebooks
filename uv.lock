@@ -4113,7 +4113,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "distributed" },
-    { name = "qim3d", extras = ["all"] },
+    { name = "qim3d", extras = ["all"], specifier = ">=1.6" },
 ]
 
 [package.metadata.requires-dev]
